@@ -23,85 +23,46 @@ class MainActivityInstrumentedTest {
 
     @Test
     fun whenFirstLaunchThenPageShouldHaveValidTitle() {
-        onView(withId(R.id.tv_title)).check(
-            matches(
-                withText("Welcome to my App")
-            )
-        )
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenFirstLaunchThenPageShouldHaveInitialEmptyNameAndHasValidHint() {
-        onView(withId(R.id.et_name))
-            .check(matches(withHint("Insert Your Name")))
-            .check(matches(withText(Matchers.isEmptyString())))
-            .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenFirstLaunchThenPageShouldHaveInitialEmptyPasswordAndHasValidHint() {
-        onView(withId(R.id.et_password))
-            .check(matches(withHint("Insert Your Password")))
-            .check(matches(withText(Matchers.isEmptyString())))
-            .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenFirstLaunchThenPageShouldHaveEnabledSubmitButton() {
-        onView(withId(R.id.b_submit))
-            .check(matches(withText("Submit")))
-            .check(matches(isEnabled()))
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenFirstLaunchThenSuccessMessageShouldBeHidden() {
-        onView(withId(R.id.tv_success_message))
-            .check(matches(withEffectiveVisibility(Visibility.GONE)))
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenSubmitImmediatelyThenEmptyNameErrorIsShown() {
-        onView(withId(R.id.b_submit)).perform(click())
-
-        onView(withText("Name should not empty"))
-            .check(matches(isDisplayed()))
-            .check(matches(hasTextColor(R.color.white)))
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenTypeNameOnlyAndSubmitThenEmptyPasswordErrorIsShown() {
-        onView(withId(R.id.et_name)).perform(typeText("name"))
-        onView(withId(R.id.b_submit)).perform(click())
-
-        onView(withText("Password should not empty"))
-            .check(matches(isDisplayed()))
-            .check(matches(hasTextColor(R.color.white)))
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenTypePasswordOnlyAndSubmitThenToastEmptyNameErrorIsShown() {
-        onView(withId(R.id.et_password)).perform(typeText("password"))
-        onView(withId(R.id.b_submit)).perform(click())
-
-        onView(withText("Name should not empty"))
-            .check(matches(isDisplayed()))
-            .check(matches(hasTextColor(R.color.white)))
+        // ToDo: Implement UI test
     }
 
     @Test
     fun whenTypePasswordAndNameAndSubmitThenSuccessBehaviorIsValid() {
-        onView(withId(R.id.et_name)).perform(typeText("name"))
-        onView(withId(R.id.et_password)).perform(typeText("password"))
-        onView(withId(R.id.b_submit)).perform(click())
-
-        onView(withText("PROCESSING"))
-            .check(matches(isDisplayed()))
-            .check(matches(hasTextColor(R.color.white)))
-        onView(withId(R.id.b_submit))
-            .check(matches(withText("Data submitted")))
-            .check(matches(isNotEnabled()))
-        onView(withId(R.id.et_name)).check(matches(withEffectiveVisibility(Visibility.GONE)))
-        onView(withId(R.id.et_password)).check(matches(withEffectiveVisibility(Visibility.GONE)))
-        onView(withId(R.id.tv_success_message)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        // ToDo: Implement UI test
     }
 }
