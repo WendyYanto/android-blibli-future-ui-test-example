@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import dev.wendyyanto.uitestsexample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +45,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        val snackBar = Snackbar.make(viewBinding.root, message, Snackbar.LENGTH_SHORT)
+        if (message != PROCESSING) {
+            snackBar.setBackgroundTint(ContextCompat.getColor(this, R.color.dark_red))
+                .setActionTextColor(ContextCompat.getColor(this, R.color.white))
+        }
+        snackBar.show()
     }
 
     private fun onSuccess() {
@@ -54,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             tvSuccessMessage.visibility = View.VISIBLE
 
             bSubmit.isEnabled = false
+            bSubmit.text = "Data submitted"
         }
     }
 }
