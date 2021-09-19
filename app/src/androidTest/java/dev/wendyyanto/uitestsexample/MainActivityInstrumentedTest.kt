@@ -7,6 +7,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.hamcrest.Matchers
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,7 +34,7 @@ class MainActivityInstrumentedTest {
     fun whenFirstLaunchThenPageShouldHaveInitialEmptyNameAndHasValidHint() {
         onView(withId(R.id.et_name))
             .check(matches(withHint("Insert Your Name")))
-            .check(matches(withText("")))
+            .check(matches(withText(Matchers.isEmptyString())))
             .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
     }
 
@@ -41,7 +42,7 @@ class MainActivityInstrumentedTest {
     fun whenFirstLaunchThenPageShouldHaveInitialEmptyPasswordAndHasValidHint() {
         onView(withId(R.id.et_password))
             .check(matches(withHint("Insert Your Password")))
-            .check(matches(withText("")))
+            .check(matches(withText(Matchers.isEmptyString())))
             .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
     }
 
