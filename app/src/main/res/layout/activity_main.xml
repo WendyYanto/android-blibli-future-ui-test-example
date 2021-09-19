@@ -12,6 +12,16 @@
         android:text="Welcome to my App"
         android:textSize="28dp" />
 
+    <TextView
+        android:id="@+id/tv_success_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Success"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:textSize="28dp" />
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"

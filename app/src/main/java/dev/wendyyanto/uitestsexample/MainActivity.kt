@@ -2,10 +2,15 @@ package dev.wendyyanto.uitestsexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import dev.wendyyanto.uitestsexample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val PROCESSING = "PROCESSING"
+    }
 
     private lateinit var viewBinding: ActivityMainBinding
 
@@ -26,14 +31,29 @@ class MainActivity : AppCompatActivity() {
             val message = when {
                 name.isNullOrBlank() -> "Name should not empty"
                 password.isNullOrBlank() -> "Password should not empty"
-                else -> "Processing"
+                else -> PROCESSING
             }
 
             showMessage(message)
+
+            if (message == PROCESSING) {
+                onSuccess()
+            }
         }
     }
 
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onSuccess() {
+        with(viewBinding) {
+            etName.visibility = View.GONE
+            etPassword.visibility = View.GONE
+
+            tvSuccessMessage.visibility = View.VISIBLE
+
+            bSubmit.isEnabled = false
+        }
     }
 }
