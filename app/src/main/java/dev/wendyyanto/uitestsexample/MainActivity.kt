@@ -46,10 +46,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun showMessage(message: String) {
         val snackBar = Snackbar.make(viewBinding.root, message, Snackbar.LENGTH_SHORT)
-        if (message != PROCESSING) {
+        if (message == PROCESSING) {
+            snackBar.setBackgroundTint(ContextCompat.getColor(this, R.color.teal_200))
+        } else {
             snackBar.setBackgroundTint(ContextCompat.getColor(this, R.color.dark_red))
-                .setActionTextColor(ContextCompat.getColor(this, R.color.white))
         }
+        snackBar.setActionTextColor(ContextCompat.getColor(this, R.color.white))
         snackBar.show()
     }
 

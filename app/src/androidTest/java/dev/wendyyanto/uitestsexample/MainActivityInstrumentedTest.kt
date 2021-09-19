@@ -31,35 +31,31 @@ class MainActivityInstrumentedTest {
 
     @Test
     fun whenFirstLaunchThenPageShouldHaveInitialEmptyNameAndHasValidHint() {
-        onView(withId(R.id.et_name)).apply {
-            check(matches(withHint("Insert Your Name")))
-            check(matches(withText("")))
-            check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
-        }
+        onView(withId(R.id.et_name))
+            .check(matches(withHint("Insert Your Name")))
+            .check(matches(withText("")))
+            .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
     }
 
     @Test
     fun whenFirstLaunchThenPageShouldHaveInitialEmptyPasswordAndHasValidHint() {
-        onView(withId(R.id.et_password)).apply {
-            check(matches(withHint("Insert Your Password")))
-            check(matches(withText("")))
-            check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
-        }
+        onView(withId(R.id.et_password))
+            .check(matches(withHint("Insert Your Password")))
+            .check(matches(withText("")))
+            .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
     }
 
     @Test
     fun whenFirstLaunchThenPageShouldHaveEnabledSubmitButton() {
-        onView(withId(R.id.b_submit)).apply {
-            check(matches(withText("Submit")))
-            check(matches(isEnabled()))
-        }
+        onView(withId(R.id.b_submit))
+            .check(matches(withText("Submit")))
+            .check(matches(isEnabled()))
     }
 
     @Test
     fun whenFirstLaunchThenSuccessMessageShouldBeHidden() {
-        onView(withId(R.id.tv_success_message)).apply {
-            check(matches(withEffectiveVisibility(Visibility.GONE)))
-        }
+        onView(withId(R.id.tv_success_message))
+            .check(matches(withEffectiveVisibility(Visibility.GONE)))
     }
 
     @Test
@@ -90,10 +86,10 @@ class MainActivityInstrumentedTest {
 
         onView(withText("PROCESSING"))
             .check(matches(isDisplayed()))
-        onView(withId(R.id.b_submit)).apply {
-            check(matches(withText("Data submitted")))
-            check(matches(isNotEnabled()))
-        }
+            .check(matches(hasTextColor(R.color.white)))
+        onView(withId(R.id.b_submit))
+            .check(matches(withText("Data submitted")))
+            .check(matches(isNotEnabled()))
         onView(withId(R.id.et_name)).check(matches(withEffectiveVisibility(Visibility.GONE)))
         onView(withId(R.id.et_password)).check(matches(withEffectiveVisibility(Visibility.GONE)))
         onView(withId(R.id.tv_success_message)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
