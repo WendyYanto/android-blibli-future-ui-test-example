@@ -60,6 +60,15 @@ class MainActivityInstrumentedTest {
     }
 
     @Test
+    fun whenSubmitImmediatelyThenEmptyNameErrorIsShown() {
+        onView(withId(R.id.b_submit)).perform(click())
+
+        onView(withText("Name should not empty"))
+            .check(matches(isDisplayed()))
+            .check(matches(hasTextColor(R.color.white)))
+    }
+
+    @Test
     fun whenTypeNameOnlyAndSubmitThenEmptyPasswordErrorIsShown() {
         onView(withId(R.id.et_name)).perform(typeText("name"))
         onView(withId(R.id.b_submit)).perform(click())
