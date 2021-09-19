@@ -1,8 +1,6 @@
 package dev.wendyyanto.uitestsexample
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -12,7 +10,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.EnumSet.allOf
 
 
 @RunWith(AndroidJUnit4::class)
@@ -66,11 +63,39 @@ class MainActivityInstrumentedTest {
     }
 
     @Test
-    fun whenTypeNameAndSubmitThenToastEmptyPasswordIsShown() {
+    fun whenTypeNameOnlyAndSubmitThenEmptyPasswordErrorIsShown() {
         onView(withId(R.id.et_name)).perform(typeText("name"))
         onView(withId(R.id.b_submit)).perform(click())
 
-//        onView(allOf(withId(android.support.design.R.id.snackbar_text), withText("My text")))
-//            .check(matches(isDisplayed()));
+        onView(withText("Password should not empty"))
+            .check(matches(isDisplayed()))
+            .check(matches(hasTextColor(R.color.white)))
+    }
+
+    @Test
+    fun whenTypePasswordOnlyAndSubmitThenToastEmptyNameErrorIsShown() {
+        onView(withId(R.id.et_password)).perform(typeText("password"))
+        onView(withId(R.id.b_submit)).perform(click())
+
+        onView(withText("Name should not empty"))
+            .check(matches(isDisplayed()))
+            .check(matches(hasTextColor(R.color.white)))
+    }
+
+    @Test
+    fun whenTypePasswordAndNameAndSubmitThenSuccessBehaviorIsValid() {
+        onView(withId(R.id.et_name)).perform(typeText("name"))
+        onView(withId(R.id.et_password)).perform(typeText("password"))
+        onView(withId(R.id.b_submit)).perform(click())
+
+        onView(withText("PROCESSING"))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.b_submit)).apply {
+            check(matches(withText("Data submitted")))
+            check(matches(isNotEnabled()))
+        }
+        onView(withId(R.id.et_name)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.et_password)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.tv_success_message)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
     }
 }
